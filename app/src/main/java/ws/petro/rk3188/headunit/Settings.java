@@ -26,6 +26,10 @@ import java.util.List;
 public class Settings {
 	private final static String TAG = "Settings";
 
+	final static String C200ActionNext = "cn.com.cs2c.android.vehicle.action.NEXT_KEY";
+	final static String C200ActionPrev = "cn.com.cs2c.android.vehicle.action.PREVIEW_KEY";
+	final static String C200ActionPlayPause = "cn.com.cs2c.android.vehicle.action.PLAYPAUSE_KEY";
+
 	private static Settings instance = null;
 	private static SharedPreferences prefs;
 
@@ -118,6 +122,10 @@ public class Settings {
 
 	public void setServiceEnable(boolean enable) {
 		setCfgBool("service.enable", enable);
+	}
+
+	public boolean getMediaKeysEnable() {
+		return prefs.getBoolean("keys.enable", true);
 	}
 
 	public static boolean getServiceToast() {

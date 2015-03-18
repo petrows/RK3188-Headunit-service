@@ -20,6 +20,8 @@ public class ServiceMain extends Service implements LocationListener {
 	public static boolean isRunning = false;
 	public double last_speed = 0;
 
+	public SWCReceiver swc;
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return (null);
@@ -52,6 +54,14 @@ public class ServiceMain extends Service implements LocationListener {
 			if (null != locationManager) {
 				locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 			}
+
+			IntentFilter intf = new IntentFilter();
+			intf.addAction(Settings.C200ActionNext);
+			intf.addAction(Settings.C200ActionPrev);
+			intf.addAction(Settings.C200ActionPlayPause);
+			swc = new SWCReceiver();
+			registerReceiver(swc, intf);
+			Log.d(TAG, "SWCReceiver registerReceiver");
 
 			return (START_STICKY);
 		}
