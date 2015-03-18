@@ -45,6 +45,8 @@ public class ServiceMain extends Service implements LocationListener {
 		if (Settings.getServiceEnable()) {
 			Log.d(TAG, "MTCService onStartCommand");
 
+			Settings.get(this).announce(this, startId);
+
 			LocationManager locationManager = (LocationManager) this
 					.getSystemService(Context.LOCATION_SERVICE);
 			if (null != locationManager) {

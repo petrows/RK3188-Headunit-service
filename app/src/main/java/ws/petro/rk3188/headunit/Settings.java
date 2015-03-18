@@ -71,6 +71,18 @@ public class Settings {
 		}
 	}
 
+	public void announce(Service srv, int id) {
+		Intent notificationIntent = new Intent(srv, MainActivity.class);
+		PendingIntent contentIntent = PendingIntent.getActivity(srv, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+		Notification note = new NotificationCompat.Builder(srv)
+				.setContentTitle(srv.getString(R.string.app_service_title) + " " + Settings.get(srv).getVersion())
+				.setContentText(srv.getString(R.string.app_service_descr))
+				.setContentIntent(contentIntent)
+				.setSmallIcon(R.drawable.ic_launcher).build();
+		srv.startForeground(id, note);
+	}
+
 	public String getVersion() {
 		String version = "?";
 		try {

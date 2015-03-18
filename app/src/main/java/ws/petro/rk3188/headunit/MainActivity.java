@@ -44,8 +44,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		switch (v.getId()) {
 			case R.id.btnSettings:
 				// Run advanced settings
-				//Intent intent = new Intent(this, SettingsActivity.class);
-				//startActivity(intent);
+				Intent intent = new Intent(this, SettingsActivity.class);
+				startActivity(intent);
 				break;
 			case R.id.btnContact:
 				// Run advanced settings
